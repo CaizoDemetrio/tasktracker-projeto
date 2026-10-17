@@ -8,10 +8,25 @@ def mostrar_menu():
 def cadastrar_tarefa(tarefas):
     print("\n-- CADASTRAR NOVA TAREFA --")
     
-    titulo = input("Título da tarefa: ")
-    descricao = input("Descrição da tarefa: ")
-    prioridade = input("Prioridade (Alta, Média, Baixa): ")
-    data_limite = input("Data Limite (ex: DD/MM/AAAA): ")
+    # Validação do Título (Não pode ser vazio)
+    while True:
+        titulo = input("Título da tarefa (Obrigatório): ").strip()
+        if titulo != "":
+            break
+        print("Erro: O título não pode ser vazio. Tente novamente.")
+        
+    descricao = input("Descrição da tarefa: ").strip()
+    
+    # Validação da Prioridade
+    prioridades_validas = ["alta", "média", "media", "baixa"]
+    while True:
+        prioridade = input("Prioridade (Alta, Média, Baixa): ").strip()
+        if prioridade.lower() in prioridades_validas:
+            prioridade = prioridade.capitalize()
+            break
+        print("Erro: Prioridade inválida. Aceita apenas Alta, Média ou Baixa.")
+        
+    data_limite = input("Data Limite (ex: DD/MM/AAAA): ").strip()
     
     nova_tarefa = {
         "titulo": titulo,
